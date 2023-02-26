@@ -10,7 +10,6 @@ pipeline {
         stage ('Clone project repo') {
             steps {
                 git 'https://github.com/Elferey/my_box.git'
-                git 'https://github.com/Elferey/Dockerfiles.git'
             }
         }
         stage ('Build war file') {
