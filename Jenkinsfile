@@ -30,7 +30,7 @@ pipeline {
         }
         stage ('Deploy tomcat to remote host') {
             steps {
-                sshagent(credentials: ['6124e027-01c6-4d93-93b8-afad1862f6ba']) {
+                sshagent(credentials: ['d2b90e3b-744c-42e2-b6af-47cae41c1a25']) {
                     sh '''
                         docker pull 10.129.0.4:8123/$image_name:$tag
                         docker run -d -t 10.129.0.4:8123/$image_name:$tag
