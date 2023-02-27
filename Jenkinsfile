@@ -20,6 +20,7 @@ pipeline {
         }
         stage ('Create and push app container') {
             steps {
+                sh 'pwd && ls -la'
                 sh 'cp -r /var/lib/jenkins/workspace/build/target/hello-1.0.war /var/lib/jenkins/workspace/build'
                 sh 'docker build -t $image_name /var/lib/jenkins/workspace/build'
                 sh 'docker tag $image_name 10.129.0.4:8123/$image_name:$tag'
