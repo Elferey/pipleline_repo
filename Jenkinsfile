@@ -31,7 +31,7 @@ pipeline {
         stage('Run docker on remote host') {
             steps {
                 sh 'ssh-keyscan -H 10.129.0.6 >> ~/.ssh/known_hosts'
-                sh '''ssh 10.129.0.6 << EOF
+                sh '''ssh -tt 10.129.0.6 << EOF
 	            sudo docker pull 10.129.0.4:8123/$image_name:$tag
 	            sudo docker run -d -t 10.129.0.4:8123/$image_name:$tag
                 EOF'''
