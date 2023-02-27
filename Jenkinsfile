@@ -2,7 +2,7 @@ pipeline {
     agent {
 
         docker {
-            image '10.129.0.4:8123/jenkins-agent1:latest2'
+            image '10.129.0.4:8123/jenkins-agent:stable'
             args '--privileged -v /var/run/docker.sock:/var/run/docker.sock -u root'
         }
     }
