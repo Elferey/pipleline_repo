@@ -2,7 +2,7 @@ pipeline {
     agent {
 
         docker {
-            image '10.129.0.4:8123/jenkins-agent2:latest2'
+            image '10.129.0.4:8123/jenkins-agent1:latest2'
             args '--privileged -v /var/run/docker.sock:/var/run/docker.sock -u root'
         }
     }
@@ -28,15 +28,15 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy tomcat to remote host') {
+        stage('Run docker on devbe-srv01') {
             steps {
-                sshagent(credentials: ['d2b90e3b-744c-42e2-b6af-47cae41c1a25']) {
-                    sh '''
-                        docker pull 10.129.0.4:8123/$image_name:$tag
-                        docker run -d -t 10.129.0.4:8123/$image_name:$tag
-                    '''
+                sh 'ssh-keyscan -H 10.129.0.6 >> ~/.ssh/known_hosts'
+                sh '''ssh 10.129.0.6 << EOF
+	            sudo docker pull 10.129.0.4:8123/$image_name:$tag
+	            sudo docker start 10.129.0.4:8123/$image_name:$tag
+                EOF'''
+      }
     }
-            }
         }
     }
 }
