@@ -34,7 +34,7 @@ pipeline {
                 sh '''ssh root@10.129.0.6 <<EOF
   sudo docker pull 10.129.0.4:8123/$image_name:$tag
   sudo docker run -d -t 10.129.0.4:8123/$image_name:$tag
-  EOF'''
+EOF'''
                 
             }
         }
