@@ -4,6 +4,7 @@ pipeline {
         docker {
             image '10.129.0.4:8123/jenkins-agent:test'
             args '--privileged -v /var/run/docker.sock:/var/run/docker.sock'
+            args '-u root'
         }
     }
 
