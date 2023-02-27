@@ -23,7 +23,7 @@ pipeline {
                 sh 'cp -r /var/lib/jenkins/workspace/build-war-file/target/hello-1.0.war /var/lib/jenkins/workspace/build-war-file'
                 sh 'docker build -t $image_name /var/lib/jenkins/workspace/build-war-file'
                 sh 'docker tag $image_name 10.129.0.4:8123/$image_name:$tag'
-                withDockerRegistry(credentialsId: '2abc3bc9-874a-4958-8b16-a426a6f60c89', url: 'http://84.201.160.68:8123/') {
+                withDockerRegistry(credentialsId: '2abc3bc9-874a-4958-8b16-a426a6f60c89', url: 'http://10.129.0.4:8123/') {
                 bat 'docker push 10.129.0.4:8123/$image_name:$tag'
                 }
             }
