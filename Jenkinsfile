@@ -28,7 +28,7 @@ pipeline {
                 }
             }
         }
-        stage('Run docker on devbe-srv01') {
+        stage('Run docker on remote host') {
             steps {
                 sh 'ssh-keyscan -H 10.129.0.6 >> ~/.ssh/known_hosts'
                 sh '''ssh 10.129.0.6 << EOF
