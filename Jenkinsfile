@@ -35,8 +35,8 @@ pipeline {
 	            sudo docker pull 10.129.0.4:8123/$image_name:$tag
 	            sudo docker start 10.129.0.4:8123/$image_name:$tag
                 EOF'''
-      }
-    }
+                }
+            }
         }
     }
 }
