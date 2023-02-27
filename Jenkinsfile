@@ -3,8 +3,7 @@ pipeline {
 
         docker {
             image '10.129.0.4:8123/jenkins-agent:latest'
-            args '--privileged -v /var/run/docker.sock:/var/run/docker.sock \
-            -u root'
+            args '--privileged -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
 
@@ -14,7 +13,11 @@ pipeline {
                 git 'https://github.com/Elferey/my_box.git'
             }
         }
-
+        stage ('Build war file') {
+            steps {
+                sh 'mvn package'
+            }
+        }
         stage ('Create and push app container') {
             steps {
                 sh 'ls -la /var/run/ && chown root:docker /var/run/docker.sock'
