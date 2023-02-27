@@ -14,11 +14,7 @@ pipeline {
                 git 'https://github.com/Elferey/my_box.git'
             }
         }
-        stage ('Build war file') {
-            steps {
-                sh 'mvn package'
-            }
-        }
+
         stage ('Create and push app container') {
             steps {
                 sh 'ls -la /var/run/ && chown root:docker /var/run/docker.sock'
